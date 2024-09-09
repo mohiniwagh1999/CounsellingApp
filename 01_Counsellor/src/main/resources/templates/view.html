@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en"  xmlns:th="https://www.thymeleaf.com">
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+	crossorigin="anonymous">
+	<title>addenquiry page</title>
+</head>
+
+
+<body>
+
+
+
+<div class="container">
+
+<ul class="nav">
+<li class="nav-item">
+<a  class="nav-link active" aria-current="page" href="dashboard" >View Dashboard</a>
+</li>
+
+<li class="nav-item">
+<a  class="nav-link active" aria-current="page" href="enquiry" >Add Enquiry</a>
+</li>
+
+<li class="nav-item">
+<a  class="nav-link active" aria-current="page" href="/view" >View Enquiry</a>
+</li>
+
+<li class="nav-item">
+<a  class="nav-link active" aria-current="page" href="/logout" >Logout</a>
+</li>
+</ul>
+
+
+
+<h2>view enquiry here</h2>
+<hr>
+
+
+
+<form th:action="@{/view}"  th:object="${viewfilter}" method="post">
+
+
+<table>
+<tr>
+<td>class mode:</td>
+<td>
+<select  th:field="*{classMode}" >
+<option value="">-select-</option>
+<option value="online">online</option>
+<option value="classroom">classroom</option>
+</select>
+</td>
+
+
+
+<td>course name:</td>
+<td>
+<select  th:field="*{courseName}" >
+<option value="">-select-</option>
+<option value="java">java</option>
+<option value="python">python</option>
+<option value="devops">devops</option>
+<option value="aws">aws</option>
+</select>
+</td>
+
+
+ <td>enquiry status:</td>
+<td>
+<select th:field="*{enqStatus}">
+<option value="">-select-</option>
+<option value="open">open</option>
+<option value="enrolled">enrolled</option>
+<option value="lost">lost</option>
+</select>
+</td>
+<td><input type="submit" value="search"  class="btn btn-primary"/></td>
+</tr>
+
+
+</table>
+</form>
+
+<table class="table table-bordered table-stripted table-hover">
+  <thead class="table-light">
+    <tr>
+      <th scope="col">S.No</th>
+      <th scope="col">Name</th>
+      <th scope="col">Course</th>
+      <th scope="col">Mode</th>
+       <th scope="col">Phno</th>
+        <th scope="col">Status</th>
+        <th scope="col">Edit</th>
+    </tr>
+  </thead>
+  
+  
+  <tbody>
+    <tr th:each="enq,indexStart: ${enquiries}">
+     <td th:text="${indexStart.index+1}"></td> 
+      <td th:text="${enq.stuName}"></td> 
+      <td th:text="${enq.courseName}"></td> 
+      <td th:text="${enq.classMode}"></td> 
+      <td th:text="${enq.stuPhno}"></td> 
+      <td th:text="${enq.enqStatus}"></td> 
+      <td ><a th:href="@{'/edit?enqId='+${enq.enqId}}">Edit</a></td> 
+      
+    </tr>
+    
+     <tr th:if="${enquiries.size()==0}">
+    <td colspan="7">No Record Found</td>
+    
+    </tr>
+   </tbody>
+   
+  
+   
+</table>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+		crossorigin="anonymous">
+	</script>
+	
+
+</body>
+</html>

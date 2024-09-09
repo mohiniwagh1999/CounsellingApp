@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en"  xmlns:th="https://www.thymeleaf.com">
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+	crossorigin="anonymous">
+	<title>addenquiry page</title>
+</head>
+
+
+<body>
+
+
+
+<div class="container">
+
+<ul class="nav">
+
+<li class="nav-item">
+<a  class="nav-link active" aria-current="page" href="dashboard" >View Dashboard</a>
+</li>
+
+<li class="nav-item">
+<a  class="nav-link active" aria-current="page" href="enquiry" >Add Enquiry</a>
+</li>
+
+<li class="nav-item">
+<a  class="nav-link active" aria-current="page" href="/view" >View Enquiry</a>
+</li>
+
+<li class="nav-item">
+<a  class="nav-link active" aria-current="page" href="/logout" >Logout</a>
+</li>
+
+</ul>
+
+
+
+<h2>add new enquiry here</h2>
+<hr>
+
+<font style= "color: red;">
+<p th:text="${emsg}"></p>
+</font>
+<font style= "color: green;">
+<p th:text="${smsg}"></p>
+</font>
+
+<form th:action="@{/addenq}"  th:object="${enq}" method="post">
+
+<table>
+
+<tr>
+<td>Student name:</td>
+<td><input type="text" th:field="*{stuName}" class="form-control" required/></td>
+<input type="hidden" th:field="*{enqId}"  required/>
+</tr>
+
+<tr>
+<td>Phone number:</td>
+<td><input type="number" th:field="*{stuPhno}" class="form-control" required ></td>
+</tr>
+
+<tr>
+<td>training mode:</td>
+<td>
+<select th:field="*{classMode}" required>
+<option value="online">online</option>
+<option value="classroom">classroom</option>
+</select>
+</td>
+</tr>
+
+<tr>
+<td>select course:</td>
+<td>
+<select th:field="*{courseName}" required>
+<option value="java">java</option>
+<option value="python">python</option>
+<option value="devops">devops</option>
+<option value="aws">aws</option>
+</select>
+</td>
+</tr>
+
+<tr>
+<td>enquiry status:</td>
+<td>
+<select th:field="*{enqStatus}" required>
+<option value="open">open </option>
+<option value="enrolled">enrolled</option>
+<option value="lost">lost</option>
+</select>
+
+</td>
+</tr>
+
+
+
+
+
+
+<tr>
+<td></td>
+<td><input type="submit" value="save"  class="btn btn-primary"/></td>
+</tr>
+
+</table>
+</form>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+		crossorigin="anonymous">
+	</script>
+	
+
+</body>
+</html>
